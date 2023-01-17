@@ -12,7 +12,6 @@ autoFillText();
 function collectData(e){
     if(e.target.value){
     feedbackData[e.target.name] = e.target.value;
-    console.log(feedbackData)
     const feedbackDataJSON = JSON.stringify(feedbackData);
     localStorage.setItem("feedback-form-state", feedbackDataJSON)
 }
@@ -24,7 +23,6 @@ function autoFillText(){
          userData = JSON.parse(savedUserFeedback)
     emailInputFill(userData);
     messageInputFill(userData)
-    console.log(feedbackData)
        return userData;
     }
 }
@@ -46,6 +44,7 @@ function submitFeedback(e){
     if(feedbackData.email && feedbackData.message) {
     e.target.reset();
     localStorage.removeItem("feedback-form-state")
+    console.log(feedbackData)
     feedbackData = {};
     return;
 }

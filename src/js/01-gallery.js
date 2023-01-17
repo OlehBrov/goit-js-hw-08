@@ -23,6 +23,7 @@ galleryRef.insertAdjacentHTML("afterbegin", galleryMarkup);
 galleryRef.addEventListener('click', gallerySlider);
 
 function gallerySlider (event){
+    event.preventDefault();
     let gallery = new SimpleLightbox('.gallery a', 
     {
         captions: true,
