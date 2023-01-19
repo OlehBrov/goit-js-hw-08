@@ -4,10 +4,14 @@ const feedbackForm = document.querySelector('.feedback-form');
 feedbackForm.addEventListener('input', throttle((collectData), 500));
 feedbackForm.addEventListener('submit', submitFeedback)
 
-
-let feedbackData = {};
-let userData = {}
+let savedUserFeedback = localStorage.getItem("feedback-form-state")
 autoFillText();
+let feedbackData = {};
+
+if(savedUserFeedback){
+feedbackData = JSON.parse(savedUserFeedback)
+}
+
 
 function collectData(e){
     if(e.target.value){
@@ -18,17 +22,17 @@ function collectData(e){
 }
     
 function autoFillText(){
-    const savedUserFeedback = localStorage.getItem("feedback-form-state")
+    savedUserFeedback = localStorage.getItem("feedback-form-state")
     if(savedUserFeedback) {
-         userData = JSON.parse(savedUserFeedback)
+    const userData = JSON.parse(savedUserFeedback)
     emailInputFill(userData);
     messageInputFill(userData)
-       return userData;
     }
 }
 
 function emailInputFill (userData){
     if(userData.email){
+       
         feedbackForm.email.value = userData.email;
     }
 }
